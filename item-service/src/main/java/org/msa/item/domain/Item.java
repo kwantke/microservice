@@ -1,13 +1,28 @@
 package org.msa.item.domain;
 
-import lombok.Data;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.*;
 
-@Data
+@Builder
+@Entity
+@Table(name = "ITEM")
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Item {
+  @Id @Column(name="ID", length = 30)
   private String id;
+  @Column(name="NAME", length = 30)
   private String name;
+  @Column(name="DESCRIPTION", length = 30)
   private String description;
+  @Column(name="COUNT", length = 10)
   private long count;
+  @Column(name="REG_DTS", length = 14)
   private String regDts;
+  @Column(name="UPD_DTS", length = 14)
   private String updDts;
 }
