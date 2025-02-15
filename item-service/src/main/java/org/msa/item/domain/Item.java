@@ -19,6 +19,8 @@ public class Item {
   private String name;
   @Column(name="DESCRIPTION", length = 30)
   private String description;
+  @Column(name = "ITEM_TYPE", length = 1)
+  private String itemType;
   @Column(name="COUNT", length = 10)
   private long count;
   @Column(name="REG_DTS", length = 14)
