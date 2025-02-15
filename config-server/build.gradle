@@ -1,0 +1,48 @@
+plugins {
+  id 'java'
+  id 'org.springframework.boot' version '3.4.2'
+  id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'org.msa'
+version = '0.0.1-SNAPSHOT'
+
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(21)
+  }
+}
+
+repositories {
+  mavenCentral()
+}
+
+ext {
+  set('springCloudVersion', "2024.0.0")
+}
+
+dependencies {
+  // actuater는 springboot에 대해서 http 모니터링 같은 기능을 제공하는 라이브러리인데
+  // config server에 대해서 여러 요청하기 위해 필요한 기능이다.
+  implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+  // Config Sever
+  implementation 'org.springframework.cloud:spring-cloud-config-server'
+
+  // bootstrap을 통해 database 설정 정보를 압복호화 기능에 필요한 라이브러리 의존성 추가
+  implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
+  implementation 'org.springframework.security:spring-security-rsa:1.1.5'
+
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+dependencyManagement {
+  imports {
+    mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+  }
+}
+
+tasks.named('test') {
+  useJUnitPlatform()
+}
