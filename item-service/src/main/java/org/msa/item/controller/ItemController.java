@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.msa.item.dto.ItemDTO;
 import org.msa.item.dto.ResponseDTO;
 import org.msa.item.dto.constant.ItemType;
+import org.msa.item.exception.ApiException;
 import org.msa.item.service.ItemService;
 import org.msa.item.valid.ItemTypeValid;
 import org.springframework.http.ResponseEntity;
@@ -42,6 +43,11 @@ public class ItemController {
       itemDTO.setItemType(itemType);
     }
 */
+    /*try {
+      Integer.parseInt("test");
+    } catch (Exception e) {
+      throw new ApiException("test에러");
+    }*/
     itemDTO.setItemType(itemType);
     itemService.insertItem(itemDTO);
     log.debug("request add item id = {}", itemDTO.getId());

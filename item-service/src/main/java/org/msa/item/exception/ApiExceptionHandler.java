@@ -2,6 +2,7 @@ package org.msa.item.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.msa.item.dto.ResponseDTO;
+import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -55,6 +56,13 @@ public class ApiExceptionHandler {
 
     ResponseDTO.ResponseDTOBuilder responseBuilder = ResponseDTO.builder();
     responseBuilder.code("500").message(errorMessage);
+    return ResponseEntity.ok(responseBuilder.build());
+  }
+
+  @ExceptionHandler(ApiException.class)
+  public ResponseEntity<?> apiException(HttpServletRequest request, ApiException e) {
+    ResponseDTO.ResponseDTOBuilder responseBuilder = ResponseDTO.builder();
+    responseBuilder.code("501").message(e.getMessage());
     return ResponseEntity.ok(responseBuilder.build());
   }
 }
