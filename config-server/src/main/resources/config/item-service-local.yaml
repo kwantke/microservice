@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:33306/item_example?serverTimezone=Asia/Seoul
     username: root
-    password: root01
+    password: '{cipher}9716b0d3de518ae1e59e7544dff60c1fcc0fe34ff0eaa32988105575f796b69e'
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       maximum-pool-size: 40
@@ -10,7 +10,6 @@ spring:
   sql.init.mode: never
   jpa:
     hibernate:
-
       ddl-auto: create  # create, update, validate, none
     show-sql: true
     properties:
@@ -24,6 +23,7 @@ spring:
 logging:
   file:
     name: logs/api-local.log
+    test: 22
   logback:
     rollingpolicy:
       max-history: 10
@@ -53,3 +53,7 @@ springdoc:
     disable-swagger-default-url: true
     # url 쿼리매개변수를 이용해서 swagger-ui에 대한 처리를 활성화
     display-query-params-without-oauth2: false
+
+token:
+  expiration_time: 86400000
+  secret: SECU100

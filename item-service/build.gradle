@@ -50,6 +50,10 @@ dependencies {
   implementation 'org.springframework.cloud:spring-cloud-starter-config'
   implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
 
+  // config server에 있는 yaml 파일이 수정되었을때 재기동 없이 적용되도록 수정
+  // actuater는 microservice에 대해서 api 를 통해 애플리케이션의 상태나 정보를 확인할수 있도록 지원하는 라이브러리
+  implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
   implementation 'org.springframework.boot:spring-boot-starter-web'
   compileOnly 'org.projectlombok:lombok'
   developmentOnly 'org.springframework.boot:spring-boot-devtools'
