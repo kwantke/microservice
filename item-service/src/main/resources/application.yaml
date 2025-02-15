@@ -21,8 +21,8 @@ spring:
     open-in-view: false
 
 logging:
-  file:
-    name: logs/api.log
+ # file:
+ #   name: logs/api.log
   logback:
     rollingpolicy:
       max-history: 10
