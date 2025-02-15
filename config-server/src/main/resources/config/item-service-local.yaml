@@ -10,6 +10,7 @@ spring:
   sql.init.mode: never
   jpa:
     hibernate:
+
       ddl-auto: create  # create, update, validate, none
     show-sql: true
     properties:
@@ -21,8 +22,8 @@ spring:
     open-in-view: false
 
 logging:
- # file:
- #   name: logs/api.log
+  file:
+    name: logs/api-local.log
   logback:
     rollingpolicy:
       max-history: 10
@@ -30,7 +31,10 @@ logging:
   level:
     root: info
     org.msa.item: debug #org.msa.item 패키지는 debug 레벨로 출력
-
+    org.hibernate:
+      orm:
+        jdbc:
+          bind: trace
 #http://localhost:8080/swagger-ui/index.html
 springdoc:
   # enabled: false  # Swagger UI 사용 금지(운영일경우)
