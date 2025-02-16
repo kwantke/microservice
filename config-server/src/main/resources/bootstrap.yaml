@@ -1,2 +1,4 @@
+# Database 비빌번호 암호화할때
+#POST localhost:8080/encrypt data: root01
 encrypt:
   key: SECU100

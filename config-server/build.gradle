@@ -31,6 +31,8 @@ dependencies {
 
   // bootstrap을 통해 database 설정 정보를 압복호화 기능에 필요한 라이브러리 의존성 추가
   implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
+
+  // Database 비빌번호 암호화할때 사용함
   implementation 'org.springframework.security:spring-security-rsa:1.1.5'
 
   testImplementation 'org.springframework.boot:spring-boot-starter-test'
