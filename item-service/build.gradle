@@ -54,6 +54,10 @@ dependencies {
   // actuater는 microservice에 대해서 api 를 통해 애플리케이션의 상태나 정보를 확인할수 있도록 지원하는 라이브러리
   implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
+  // Eureka에 연동해서 registry에 등록할 마이크로서비스는 Eureka client 라이브러리 의존성을 추가해야 함
+  implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
+
   implementation 'org.springframework.boot:spring-boot-starter-web'
   compileOnly 'org.projectlombok:lombok'
   developmentOnly 'org.springframework.boot:spring-boot-devtools'

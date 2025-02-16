@@ -22,8 +22,7 @@ spring:
 
 logging:
   file:
-    name: logs/api-local.log
-    test: 22
+    name: logs/api-local32.log
   logback:
     rollingpolicy:
       max-history: 10
@@ -57,3 +56,12 @@ springdoc:
 token:
   expiration_time: 86400000
   secret: SECU100
+
+eureka:
+  instance:
+    prefer-ip-address: true # hostname이 아닌 IP 주소로 Eureka server에 등록하겠냐는 옵션
+  client:
+    register-with-eureka: true # Eureka에 등록을 하겠냐는 옵션
+    fetch-registry: true # registry에 저장된 내용을 캐시해서 출력하겠냐는 옵션
+    service-url: # Eureka URl
+      defaultZone: http://localhost:8761/eureka
