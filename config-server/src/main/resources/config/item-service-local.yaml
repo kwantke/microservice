@@ -59,6 +59,8 @@ token:
 
 eureka:
   instance:
+    # 여러개의 item service 인스턴스를 실행하기 위해 ${random.value} 번호를 붙여서 매 실행시 새로운 인스턴스 ID가 실행되도록 설정
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
     prefer-ip-address: true # hostname이 아닌 IP 주소로 Eureka server에 등록하겠냐는 옵션
   client:
     register-with-eureka: true # Eureka에 등록을 하겠냐는 옵션

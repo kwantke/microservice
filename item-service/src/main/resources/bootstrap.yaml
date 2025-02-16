@@ -1,5 +1,8 @@
 server:
-  port: 5000
+  port: 0 # 이제 gateway를 사용하여 정용해줄건데 0으로 설정하여 랜덤한 포트를 갖도록 설정
+          # 그냥 랜덤한 포트가 아닌 사용 가능한 포트로 설정됨. 이유는 item-service가 eureka에 바인딩되어 있기때문에
+          # 포트를 관리할수 있음
+# port: 5000
 
 spring:
   application:
@@ -12,7 +15,7 @@ spring:
       fail-fast: true
     loadbalancer:
       ribbon:
-        enabled: false # 현재 실행하면 실행도 안되고, 부하분산으로 사용되는건데 아직은 사용 안함
+        enabled: true # 현재 실행하면 실행도 안되고, 부하분산으로 사용되는건데 아직은 사용 안함
 
 # actuater는 microservice에 대해서 api 를 통해 애플리케이션의 상태나 정보를 확인할수 있도록 지원하는 라이브러리
 # 변경된 item-service.yaml 설정 파일 내용에 대해서 프로세스 재실행없이 reload를 할수 있도록 도와주는 옵션
