@@ -2,6 +2,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:33306/item_example?serverTimezone=Asia/Seoul
     username: root
+    # 암호화한후 앞에 {cipher} 추가해야됨.
     password: '{cipher}9716b0d3de518ae1e59e7544dff60c1fcc0fe34ff0eaa32988105575f796b69e'
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
@@ -34,6 +35,7 @@ logging:
       orm:
         jdbc:
           bind: trace
+
 #http://localhost:8080/swagger-ui/index.html
 springdoc:
   # enabled: false  # Swagger UI 사용 금지(운영일경우)
@@ -59,6 +61,8 @@ token:
 
 eureka:
   instance:
+    # 여러개의 item service 인스턴스를 실행하기 위해 ${random.value} 번호를 붙여서 매 실행시 새로운 인스턴스 ID가 실행되도록 설정
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
     prefer-ip-address: true # hostname이 아닌 IP 주소로 Eureka server에 등록하겠냐는 옵션
   client:
     register-with-eureka: true # Eureka에 등록을 하겠냐는 옵션

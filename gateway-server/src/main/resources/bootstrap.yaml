@@ -1,0 +1,22 @@
+server:
+  port: 8070
+
+spring:
+  application:
+    name: gateway-service # 이 이름을 기준으로 config sever에 있는 설정 파일(item-service.yaml)을 찾아간다.
+  profiles:
+    active: local
+  cloud:
+    config:
+      uri: http://localhost:8080 # config server의 접속 정보
+      fail-fast: true
+    loadbalancer:
+      ribbon:
+        enabled: false # 현재 실행하면 실행도 안되고, 부하분산으로 사용되는건데 아직은 사용 안함
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans
