@@ -1,0 +1,52 @@
+logging:
+  file:
+    name: logs/gateway.log
+  logback:
+    rollingpolicy:
+      max-history: 10
+      max-file-size: 10MB
+  level:
+    root: info
+    org.msa.gatewayserver: debug #org.msa.item 패키지는 debug 레벨로 출력
+    org.hibernate:
+      orm:
+        jdbc:
+          bind: trace
+
+spring:
+  cloud:
+    gateway:
+      routes: # 요청 uri에 대해서 어떤 마이크로서비스로 요청 데이터를 전달할 것이냐를 결정
+        - id: item-service # 라우팅 구불을 위한 식별 ID
+          uri: lb://item-service # 이동할 마이크로 서비스명으로, lb: 로드벨런싱 약자, item-service는 유레카에 저장된 item-service
+          predicates: # 실제 요청 들어온 url 주소가 v1/item/로 시작할때 해당 요청을 전달하겠다
+            - Path=/v1/item/**
+  datasource:
+    url: jdbc:mysql://192.168.0.57:3306/item_example?serverTimezone=Asia/Seoul
+    username: root
+    password: '{cipher}9716b0d3de518ae1e59e7544dff60c1fcc0fe34ff0eaa32988105575f796b69e'
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 40
+  sql.init.mode: never
+  jpa:
+    hibernate:
+      ddl-auto: create  # create, update, validate, none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+        jdbc:
+          time_zone: Asia/Seoul
+    open-in-view: false
+
+
+eureka:
+  instance:
+    prefer-ip-address: true # hostname이 아닌 IP 주소로 Eureka server에 등록하겠냐는 옵션
+  client:
+    register-with-eureka: true # Eureka에 등록을 하겠냐는 옵션
+    fetch-registry: true # registry에 저장된 내용을 캐시해서 출력하겠냐는 옵션
+    service-url: # Eureka URl
+      defaultZone: http://eureka-server:8761/eureka

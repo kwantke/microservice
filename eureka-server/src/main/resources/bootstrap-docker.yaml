@@ -1,0 +1,14 @@
+#http://localhost:8761/
+spring:
+  application:
+    name: eureka-server
+  profiles:
+    active: docker
+  cloud:
+    config:
+      # localhost:8080 대신에 config-server:8080로 설정하면 msa-network 네트워크에 속해있는 config-server 컨테이너 정보를 찾게 되고,
+      # 그 컨테이너 정보로 연결된다고 보면 된다.
+      uri: http://config-server:8080
+    loadbalancer:
+      ribbon:
+        enabled: false

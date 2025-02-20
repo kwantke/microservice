@@ -1,0 +1,53 @@
+spring:
+  config:
+    import:
+      - classpath:/config/datasource-docker.yaml
+
+logging:
+  file:
+    name: logs/api-local32.log
+  logback:
+    rollingpolicy:
+      max-history: 10
+      max-file-size: 10MB
+  level:
+    root: info
+    org.msa.item: debug #org.msa.item 패키지는 debug 레벨로 출력
+    org.hibernate:
+      orm:
+        jdbc:
+          bind: trace
+
+#http://localhost:8080/swagger-ui/index.html
+springdoc:
+  # enabled: false  # Swagger UI 사용 금지(운영일경우)
+  # api 함수에 대해서 media-type을 지정하지 않았을때
+  # 웹 문서에서 기본적으로 API 기능 설명에 대해서 application/json 형식으로 주고받는 기능이다 라고 출력될 예정이다라고 설정한것
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+  swagger-ui:
+    # 함수명에 대해서 알파벳 기준으로 오름차순으로 문서를 정렬하겠다는 의미.
+    operations-sorter: alpha
+    # 태그명에 대해서 알파벳 기준으로 오름차순으로 정렬하겠다는 의미
+    tags-sorter: alpha
+    # path 설정은 springdoc 문서 HTML를 출력할 URI 설정
+    path: /swagger-ui.html
+    # petstore html(OpenAPI(Swagger) 샘플 문서, API 명세서 예제) 문서를 비활성화 하는 옵션으로 불필요한 petstore 관련 API 문서 내용이 추가됨
+    disable-swagger-default-url: true
+    # url 쿼리매개변수를 이용해서 swagger-ui에 대한 처리를 활성화
+    display-query-params-without-oauth2: false
+
+token:
+  expiration_time: 86400000
+  secret: SECU100
+
+eureka:
+  instance:
+    # 여러개의 item service 인스턴스를 실행하기 위해 ${random.value} 번호를 붙여서 매 실행시 새로운 인스턴스 ID가 실행되도록 설정
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
+    prefer-ip-address: true # hostname이 아닌 IP 주소로 Eureka server에 등록하겠냐는 옵션
+  client:
+    register-with-eureka: true # Eureka에 등록을 하겠냐는 옵션
+    fetch-registry: true # registry에 저장된 내용을 캐시해서 출력하겠냐는 옵션
+    service-url: # Eureka URl
+      defaultZone: http://localhost:8761/eureka
