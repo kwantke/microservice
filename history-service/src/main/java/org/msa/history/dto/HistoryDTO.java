@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class HistoryDTO {
   private String accountId;
-  private String message;
+  private String itemId;
 }

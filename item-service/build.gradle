@@ -59,6 +59,9 @@ dependencies {
 
   //implementation 'org.json:json:20200518'
 
+  // Openfeign 추가
+  implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
   implementation 'org.springframework.boot:spring-boot-starter-web'
   compileOnly 'org.projectlombok:lombok'
   developmentOnly 'org.springframework.boot:spring-boot-devtools'
