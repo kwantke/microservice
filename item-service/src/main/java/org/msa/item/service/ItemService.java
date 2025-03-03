@@ -21,7 +21,7 @@ public class ItemService {
   private final ItemRepository itemRepository;
 
   private final HistoryFeignClient historyFeignClient;
-  //private final RestTemplate restTemplate;
+  private final RestTemplate restTemplate;
 
   public void insertItem(ItemDTO itemDTO, String accountId) {
     SimpleDateFormat form = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -43,7 +43,8 @@ public class ItemService {
     Map<String, Object> historyMap = new HashMap<>();
     historyMap.put("accountId", accountId);
     historyMap.put("itemId", itemDTO.getId());
-    log.info("feign result = {}", historyFeignClient.saveHistory(historyMap));
-    //log.info("restTemplate result = {}", restTemplate.postForObject("http://HISTORY-SERVICE/v1/history/save", historyMap, String.class  ));
+    //log.info("feign result = {}", historyFeignClient.saveHistory(historyMap));
+    // String.class 파라미터는 response 응답 타입을 설정한것
+    log.info("restTemplate result = {}", restTemplate.postForObject("http://HISTORY-SERVICE/v1/history/save", historyMap, String.class  ));
   }
 }
