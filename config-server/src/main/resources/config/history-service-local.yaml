@@ -2,6 +2,7 @@ spring:
   config:
     import:
       - classpath:/config/datasource-local.yaml
+      - classpath:/config/kafka-local.yaml
 
 logging:
   file:
