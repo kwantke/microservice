@@ -12,7 +12,6 @@ import java.io.IOException;
 kafka에서 broker는 producer가 요청한 내요을 중계해서
 consumer가 가져갈 수 있도록 중계한다는 의미로
 kafka broker라고 불린다.
-
 kafka broker를 실행하기 위해서는 반드시 Zookeeper가 필요합니다.
 Zookeeper는 Producer와 Consumer에게 어떤 Cluster 및
 broker를 사용하게 할 지 알려줍니다
