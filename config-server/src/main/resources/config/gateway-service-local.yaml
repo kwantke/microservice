@@ -14,6 +14,9 @@ logging:
           bind: trace
 
 spring:
+  config:
+    import:
+      - classpath:/config/datasource-local.yaml
   cloud:
     gateway:
       routes: # 요청 uri에 대해서 어떤 마이크로서비스로 요청 데이터를 전달할 것이냐를 결정

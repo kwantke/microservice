@@ -57,15 +57,13 @@ dependencies {
   // Eureka에 연동해서 registry에 등록할 마이크로서비스는 Eureka client 라이브러리 의존성을 추가해야 함
   implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 
-  //implementation 'org.json:json:20200518'
-
   // Openfeign 추가
   implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 
   // Kafka
   implementation 'org.springframework.kafka:spring-kafka'
 
-
+  //implementation 'org.json:json:20200518'
   implementation 'org.springframework.boot:spring-boot-starter-web'
   compileOnly 'org.projectlombok:lombok'
   developmentOnly 'org.springframework.boot:spring-boot-devtools'

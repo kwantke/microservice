@@ -2,6 +2,8 @@ package org.msa.gatewayserver.filter;
 
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
+import org.msa.gatewayserver.service.AccountService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,6 +23,9 @@ import java.util.Map;
 @Slf4j
 public class TokenCheckFilter implements WebFilter {
 
+  @Autowired
+  AccountService accountService;
+
   @Override
   public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
     ServerHttpRequest request = exchange.getRequest();
@@ -39,6 +44,7 @@ public class TokenCheckFilter implements WebFilter {
     }
 
     log.info("token = {}", token);
+    success = accountService.existsByAccountIdAndToken(accountId, token);
     log.info("user authentication check result = {}", success);
 
     if (!success) {  // 인증 시패시 에러발생

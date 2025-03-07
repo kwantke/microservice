@@ -1,3 +1,8 @@
 rootProject.name = 'Microservice'
 
 include 'item-service'
+include 'config-server'
+include 'eureka-server'
+include 'gateway-server'
+include 'authentication-server'
+include 'history-service'
